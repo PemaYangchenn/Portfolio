@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pema Yangchen's Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('flower2.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: darken;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            background-color: #fff;
+            color: #000;
+            padding: 10pt;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            flex: 1;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+
+        section {
+            padding: 100px 20px;
+            margin-top: 60px;
+        }
+
+        #portfolio {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #portfolio h2 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .portfolio-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            width: 200px;
+            height: 267px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(52, 73, 94, 0.8);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item h3 {
+            margin: 10px 0;
+            font-size: 1.5em;
+            color: #ecf0f1;
+        }
+
+        .portfolio-item p {
+            padding: 0 10px;
+            color: #ecf0f1;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        section .content-box {
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        section .content-box p, section .content-box ul {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        section h3 {
+            font-size: 2em;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .reduced-size-img {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .persona-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .persona-container img {
+            width: 40%;
+            border-radius: 10px;
+        }
+
+        .persona-container .persona-text {
+            width: 55%;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .persona-container {
+                flex-direction: column;
+            }
+
+            .persona-container img, .persona-container .persona-text {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .two-columns div {
+            width: 48%;
+        }
+
+        @media (max-width: 768px) {
+            .two-columns {
+                flex-direction: column;
+            }
+
+            .two-columns div {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        .next-button {
+            display: block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* CSS for the storyboard container */
+#storyboard-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* CSS for individual storyboard sections */
+.storyboard {
+    flex: 1;
+    margin-right: 20px; /* Add some spacing between the two sections */
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="#home" style="color: #000; text-decoration: none; font-size: 1.2em;">Pema Yangchen</a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+
+    <!-- Project Title and Description -->
+    <section id="project-title">
+        <div class="content-box">
+            <h2>Car Rental Platform
+            </h2>
+            <p>A Car Rental Platform for vehicle rental for individuals and businesses
+            </p>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section id="project-overview">
+        <div class="content-box">
+            <h3>Project Overview</h3>
+            <ul>
+                <li><strong>The Product:</strong> The Car Rental Platform simplifies vehicle rental for individuals and businesses, offering a user-friendly interface for browsing, comparing prices, making reservations, and managing bookings.
+
+
+                </li>
+                <li><strong>Duration:</strong> March 2024 to May 2024</li>
+                <li><strong>The Problem:</strong> Traditional car rental processes can be time-consuming, manual, and limited, causing customers to struggle to find the right car within their budget, while rental agencies face challenges in efficient booking management.
+
+                </li>
+                <li><strong>Goal:</strong> The Car Rental Platform aims to revolutionize car rental experiences by offering a diverse range of vehicles, providing transparent pricing, streamlined bookings, and automating administrative tasks, ultimately improving operational efficiency for rental agencies.
+
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- role and res -->
+    <section id="user-persona">
+        <div class="content-box">
+            <div class="persona-container">
+                <div class="persona-text">
+                    <p>Role:
+                    </p>
+                    <li>A UX/UI designer who will conduct market research, <br>create wireframes and prototypes, and design an intuitive, <br>visually appealing interface for the car rental project.</li>
+
+                </div>
+                <br><br>
+                <div class="persona-text">
+                    <p>Responsibilities:</p>
+                        <li>Conducting interviews, paper and digital wireframing, <br>low and high-fidelity prototyping, conducting usability studies, accounting for accessibility, and iterating on designs.</li>
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- User Research Summary -->
+    <section id="user-research">
+        <div class="content-box">
+            <h3>User Research Summary</h3>
+            <p>The Car Rental Platform's user research involved surveys, interviews, and usability testing with various participants. Initially, assumptions were based on industry trends and stakeholder feedback. However, deeper engagement revealed unexpected user preferences, such as flexible rental options and clear pricing transparency. This understanding informed the platform's development, leading to a more user-centered solution.
+
+            </p>
+            <img src="C:\Users\dell\Desktop\portfolio\ui_ux\painpoints3.png" alt="User Research Summary Image" class="reduced-size-img">
+        </div>
+    </section>
+
+    <!-- User Persona -->
+    <section id="user-persona">
+        <div class="content-box">
+            <h3>User Persona</h3>
+            <div class="persona-container">
+                <div class="persona-text">
+                    <p>Problem statement:
+                        Karma struggles to find a car rental platform that offers a seamless booking process and a wide selection of vehicles to suit his varied travel needs. He often faces challenges with unclear pricing structures and limited availability, which hinder his ability to make informed rental decisions efficiently.
+
+
+                    </p>
+                </div>
+                <img src="C:\Users\dell\Desktop\portfolio\ui_ux\per3.png" alt="User Persona 1" class="reduced-size-img">
+            </div>
+            <div class="persona-container">
+                <img src="C:\Users\dell\Desktop\portfolio\ui_ux\per4.png" alt="User Persona 2" class="reduced-size-img">
+                <div class="persona-text">
+                    <p>Problem statement:
+                        Lhamo struggles to find a car rental platform that caters to her budget and provides flexible rental options to accommodate her varying travel needs. She often encounters challenges with inaccessible booking processes and limited availability of affordable vehicles, which hinder her ability to plan spontaneous trips and manage her expenses effectively.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paper Wireframe -->
+    <section id="paper-wireframe">
+        <div class="content-box">
+            <h3>Paper Wireframe</h3>
+            <div class="two-columns">
+                <div class="journey-text">
+                    <img src="C:\Users\dell\Desktop\portfolio\ui_ux\paper1.jpeg" alt="Paper Wireframe">
+                    
+                </div>
+                <div class="journey-image">
+                    <p>Establishing the fundamental layout of a page and emphasizing the intended purpose of each piece were the two main objectives of the wireframe creation process. Prioritizing the structure and function above the beautiful components was my goal.  I was able to quickly generate ideas and iterate on my concept while working on the paper wireframe. I could picture my ideas the cheapest and most easily with it. I made many wireframes and organized the site according to its intended use.
+                    </p>           
+            </div>
+        </div>
+    </section>
+    <!-- Digital Wireframe -->
+    <section id="paper-wireframe">
+        <div class="content-box">
+            <h3>Digital Wireframe</h3>
+            <div class="two-columns">
+                <div class="journey-text">
+                    <img src="C:\Users\dell\Desktop\portfolio\ui_ux\dig3.png" alt="Paper Wireframe">
+                    
+                </div>
+                <div class="journey-image">
+                    <p>Digital wireframes focus on the placement of elements such as buttons, navigation bars, images, and text, without delving into aesthetic details like colors or fonts.
+                    </p>           
+            </div>
+        </div>
+    </section>
+
+<!-- Low-fidelity Prototype -->
+    <section id="low-fidelity-prototype">
+        <div class="content-box">
+            <h3>Low-fidelity prototype</h3>
+            <div class="two-columns">
+                <div class="journey-text">
+                    <p>These prototypes are instrumental in validating design concepts, refining user flows, and gathering feedback from stakeholders in the early stages of the design process.
+                    </p>
+                </div>
+                <div class="journey-image">
+                    <img src="C:\Users\dell\Desktop\portfolio\ui_ux\lf3.png" alt="User Journey Map">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- user research -->
+    <section id="paper-wireframe">
+        <div class="content-box">
+            <h3>User Research</h3>
+            <div class="two-columns">
+                <div class="journey-text">
+                    <img src="C:\Users\dell\Desktop\portfolio\ui_ux\us3.png" alt="Paper Wireframe">
+                    
+                </div>
+                <div class="journey-image">
+                    <h4>hOur team conducted extensive usability studies on the Car Rental Platform, involving diverse participants like frequent travelers, families, and business professionals, to identify areas for improvement and improve the user experience.
+                    </h4>           
+            </div>
+        </div>
+    </section>
+
+    <!-- Before and after -->
+    <section id="storyboard-container">
+        <!-- Before -->
+        <section class="storyboard">
+            <div class="content-box">
+                <h3>Before Mock-Up</h3>
+                <img src="C:\Users\dell\Desktop\portfolio\ui_ux\bm5.png" alt="Big Picture Storyboard" > <br><br>
+                <img src="C:\Users\dell\Desktop\portfolio\ui_ux\bm6.png" alt="Big Picture Storyboard" >
+            </div>
+        </section>
+
+        <!-- After -->
+        <section class="storyboard">
+            <div class="content-box">
+                <h3>After Mock-Up</h3>
+                <img src="C:\Users\dell\Desktop\portfolio\ui_ux\am5.png" alt="Close-Up Storyboard" ><br><br>
+                <img src="C:\Users\dell\Desktop\portfolio\ui_ux\am6.png" alt="Close-Up Storyboard" >
+            </div>
+        </section>
+    </section>
+
+    <!-- High-fidelity Mockup -->
+    <section id="high-fidelity-mockup">
+        <div class="content-box">
+            <h3>High-fidelity </h3>
+            <img src="C:\Users\dell\Desktop\portfolio\ui_ux\hf3.png" alt="High-fidelity Mockup" class="reduced-size-img">
+        </div>
+    </section>
+
+
+    <!-- Accessibility Considerations -->
+    <section id="accessibility-considerations">
+        <div class="content-box">
+            <h3>Accessibility considerations</h3>
+            <img src="C:\Users\dell\Desktop\portfolio\ui_ux\ac3.png" alt="Accessibility Considerations" class="reduced-size-img">
+        </div>
+    </section>
+
+    <!-- Takeaways and Next Steps -->
+    <section id="takeaways-next-steps">
+        <div class="content-box">
+            <div class="two-columns">
+                <div>
+                    <h3>Takeaways</h3>
+                    <ul>
+                        <li><strong>Impact:</strong> The Car Rental Platform can significantly improve the transportation industry by streamlining the car rental process, enhancing customer experience, offering operational efficiency, driving business growth, and promoting sustainability through shared mobility and vehicle utilization.
+
+                        </li>
+                        <br><br>
+                        <li><strong>What I Learned:</strong> I learned the importance of user-centric design, agile development, effective collaboration, continuous improvement, and the potential impact of digital solutions in revolutionizing industries.
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Next Steps</h3>
+                    <img src="C:\Users\dell\Desktop\portfolio\ui_ux\nextStep3.png" alt="Next Steps">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Button -->
+    <a href="portfolio1.html" class="next-button">Next</a>
+</body>
+</html>
